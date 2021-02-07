@@ -1,11 +1,11 @@
 ﻿/*
-TShock, a server mod for Terraria
+TShock是Terraria的服务器模组
 Copyright (C) 2011-2019 Pryaxis & TShock Contributors
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+该程序是免费软件：您可以重新分发和/或修改
+根据GNU发布的GNU通用公共许可的条款进行
+自由软件基金会（许可的版本3）或
+（您可以选择）任何更高版本。
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -79,31 +79,31 @@ namespace TShockAPI
 	public class Command
 	{
 		/// <summary>
-		/// Gets or sets whether to allow non-players to use this command.
+		/// 获取或设置是否允许非玩家使用此命令.
 		/// </summary>
 		public bool AllowServer { get; set; }
 		/// <summary>
-		/// Gets or sets whether to do logging of this command.
+		/// 获取或设置是否记录此命令.
 		/// </summary>
 		public bool DoLog { get; set; }
 		/// <summary>
-		/// Gets or sets the help text of this command.
+		/// 获取或设置此命令的帮助文本.
 		/// </summary>
 		public string HelpText { get; set; }
 		/// <summary>
-		/// Gets or sets an extended description of this command.
+		/// 获取或设置此命令的扩展描述.
 		/// </summary>
 		public string[] HelpDesc { get; set; }
 		/// <summary>
-		/// Gets the name of the command.
+		/// 获取命令名称.
 		/// </summary>
 		public string Name { get { return Names[0]; } }
 		/// <summary>
-		/// Gets the names of the command.
+		/// 获取命令名称.
 		/// </summary>
 		public List<string> Names { get; protected set; }
 		/// <summary>
-		/// Gets the permissions of the command.
+		/// 获取命令的权限.
 		/// </summary>
 		public List<string> Permissions { get; protected set; }
 
@@ -142,7 +142,7 @@ namespace TShockAPI
 			AllowServer = true;
 			CommandDelegate = cmd;
 			DoLog = true;
-			HelpText = "No help available.";
+			HelpText = "没有可用的帮助.";
 			HelpDesc = null;
 			Names = new List<string>(names);
 			Permissions = new List<string>();
@@ -159,7 +159,7 @@ namespace TShockAPI
 			}
 			catch (Exception e)
 			{
-				ply.SendErrorMessage("Command failed, check logs for more details.");
+				ply.SendErrorMessage("命令失败，请检查日志以获取更多详细信息.");
 				TShock.Log.Error(e.ToString());
 			}
 
@@ -195,7 +195,7 @@ namespace TShockAPI
 		public static ReadOnlyCollection<Command> TShockCommands = new ReadOnlyCollection<Command>(new List<Command>());
 
 		/// <summary>
-		/// The command specifier, defaults to "/"
+		/// 命令说明符，默认为 "/"
 		/// </summary>
 		public static string Specifier
 		{
@@ -203,7 +203,7 @@ namespace TShockAPI
 		}
 
 		/// <summary>
-		/// The silent command specifier, defaults to "."
+		/// 静默命令说明符，默认为 "."
 		/// </summary>
 		public static string SilentSpecifier
 		{
@@ -224,12 +224,12 @@ namespace TShockAPI
 			add(new Command(SetupToken, "setup")
 			{
 				AllowServer = false,
-				HelpText = "Used to authenticate as superadmin when first setting up TShock."
+				HelpText = "首次设置TShock时用于认证为超级管理员."
 			});
 			add(new Command(Permissions.user, ManageUsers, "user")
 			{
 				DoLog = false,
-				HelpText = "Manages user accounts."
+				HelpText = "管理用户帐号."
 			});
 
 			#region Account Commands
@@ -237,55 +237,55 @@ namespace TShockAPI
 			{
 				AllowServer = false,
 				DoLog = false,
-				HelpText = "Logs you into an account."
+				HelpText = "登录帐户."
 			});
 			add(new Command(Permissions.canlogout, Logout, "logout")
 			{
 				AllowServer = false,
 				DoLog = false,
-				HelpText = "Logs you out of your current account."
+				HelpText = "退出当前帐户."
 			});
 			add(new Command(Permissions.canchangepassword, PasswordUser, "password")
 			{
 				AllowServer = false,
 				DoLog = false,
-				HelpText = "Changes your account's password."
+				HelpText = "更改您的帐户密码."
 			});
 			add(new Command(Permissions.canregister, RegisterUser, "register")
 			{
 				AllowServer = false,
 				DoLog = false,
-				HelpText = "Registers you an account."
+				HelpText = "注册帐户."
 			});
 			add(new Command(Permissions.checkaccountinfo, ViewAccountInfo, "accountinfo", "ai")
 			{
-				HelpText = "Shows information about a user."
+				HelpText = "显示有关用户的信息."
 			});
 			#endregion
 			#region Admin Commands
 			add(new Command(Permissions.ban, Ban, "ban")
 			{
-				HelpText = "Manages player bans."
+				HelpText = "管理玩家禁令."
 			});
 			add(new Command(Permissions.broadcast, Broadcast, "broadcast", "bc", "say")
 			{
-				HelpText = "Broadcasts a message to everyone on the server."
+				HelpText = "向服务器上的所有人广播消息."
 			});
 			add(new Command(Permissions.logs, DisplayLogs, "displaylogs")
 			{
-				HelpText = "Toggles whether you receive server logs."
+				HelpText = "切换是否接收服务器日志."
 			});
 			add(new Command(Permissions.managegroup, Group, "group")
 			{
-				HelpText = "Manages groups."
+				HelpText = "管理群组."
 			});
 			add(new Command(Permissions.manageitem, ItemBan, "itemban")
 			{
-				HelpText = "Manages item bans."
+				HelpText = "管理物品禁令."
 			});
 			add(new Command(Permissions.manageprojectile, ProjectileBan, "projban")
 			{
-				HelpText = "Manages projectile bans."
+				HelpText = "管理射弹禁令."
 			});
 			add(new Command(Permissions.managetile, TileBan, "tileban")
 			{
@@ -293,31 +293,31 @@ namespace TShockAPI
 			});
 			add(new Command(Permissions.manageregion, Region, "region")
 			{
-				HelpText = "Manages regions."
+				HelpText = "区域管理."
 			});
 			add(new Command(Permissions.kick, Kick, "kick")
 			{
-				HelpText = "Removes a player from the server."
+				HelpText = "从服务器中删除播放器."
 			});
 			add(new Command(Permissions.mute, Mute, "mute", "unmute")
 			{
-				HelpText = "Prevents a player from talking."
+				HelpText = "阻止玩家讲话."
 			});
 			add(new Command(Permissions.savessc, OverrideSSC, "overridessc", "ossc")
 			{
-				HelpText = "Overrides serverside characters for a player, temporarily."
+				HelpText = "暂时覆盖播放器的服务器端字符 ."
 			});
 			add(new Command(Permissions.savessc, SaveSSC, "savessc")
 			{
-				HelpText = "Saves all serverside characters."
+				HelpText = "保存所有服务器端字符."
 			});
 			add(new Command(Permissions.uploaddata, UploadJoinData, "uploadssc")
 			{
-				HelpText = "Upload the account information when you joined the server as your Server Side Character data."
+				HelpText = "加入服务器后，将帐户信息作为服务器端字符数据上载 ."
 			});
 			add(new Command(Permissions.settempgroup, TempGroup, "tempgroup")
 			{
-				HelpText = "Temporarily sets another player's group."
+				HelpText = "暂时设置其他玩家的组."
 			});
 			add(new Command(Permissions.su, SubstituteUser, "su")
 			{
@@ -325,17 +325,17 @@ namespace TShockAPI
 			});
 			add(new Command(Permissions.su, SubstituteUserDo, "sudo")
 			{
-				HelpText = "Executes a command as the super admin."
+				HelpText = "暂时将您提升为超级管理员."
 			});
 			add(new Command(Permissions.userinfo, GrabUserUserInfo, "userinfo", "ui")
 			{
-				HelpText = "Shows information about a player."
+				HelpText = "显示有关玩家的信息."
 			});
 			#endregion
 			#region Annoy Commands
 			add(new Command(Permissions.annoy, Annoy, "annoy")
 			{
-				HelpText = "Annoys a player for an amount of time."
+				HelpText = "困住玩家一段时间."
 			});
 			add(new Command(Permissions.annoy, Rocket, "rocket")
 			{
@@ -349,74 +349,74 @@ namespace TShockAPI
 			#region Configuration Commands
 			add(new Command(Permissions.maintenance, CheckUpdates, "checkupdates")
 			{
-				HelpText = "Checks for TShock updates."
+				HelpText = "检查TShock更新."
 			});
 			add(new Command(Permissions.maintenance, Off, "off", "exit", "stop")
 			{
-				HelpText = "Shuts down the server while saving."
+				HelpText = "保存后关闭服务器."
 			});
 			add(new Command(Permissions.maintenance, OffNoSave, "off-nosave", "exit-nosave", "stop-nosave")
 			{
-				HelpText = "Shuts down the server without saving."
+				HelpText = "不保存关闭服务器."
 			});
 			add(new Command(Permissions.cfgreload, Reload, "reload")
 			{
-				HelpText = "Reloads the server configuration file."
+				HelpText = "重新加载服务器配置文件."
 			});
 			add(new Command(Permissions.cfgpassword, ServerPassword, "serverpassword")
 			{
-				HelpText = "Changes the server password."
+				HelpText = "更改服务器密码."
 			});
 			add(new Command(Permissions.maintenance, GetVersion, "version")
 			{
-				HelpText = "Shows the TShock version."
+				HelpText = "显示TShock版本."
 			});
 			add(new Command(Permissions.whitelist, Whitelist, "whitelist")
 			{
-				HelpText = "Manages the server whitelist."
+				HelpText = "管理服务器白名单."
 			});
 			#endregion
 			#region Item Commands
 			add(new Command(Permissions.give, Give, "give", "g")
 			{
-				HelpText = "Gives another player an item."
+				HelpText = "给玩家一个物品."
 			});
 			add(new Command(Permissions.item, Item, "item", "i")
 			{
 				AllowServer = false,
-				HelpText = "Gives yourself an item."
+				HelpText = "给自己一件物品."
 			});
 			#endregion
 			#region NPC Commands
 			add(new Command(Permissions.butcher, Butcher, "butcher")
 			{
-				HelpText = "Kills hostile NPCs or NPCs of a certain type."
+				HelpText = "杀死敌对的NPC或某种类型的NPC."
 			});
 			add(new Command(Permissions.renamenpc, RenameNPC, "renamenpc")
 			{
-				HelpText = "Renames an NPC."
+				HelpText = "重命名NPC."
 			});
 			add(new Command(Permissions.maxspawns, MaxSpawns, "maxspawns")
 			{
-				HelpText = "Sets the maximum number of NPCs."
+				HelpText = "设置最大NPC数."
 			});
 			add(new Command(Permissions.spawnboss, SpawnBoss, "spawnboss", "sb")
 			{
 				AllowServer = false,
-				HelpText = "Spawns a number of bosses around you."
+				HelpText = "在你四周生成商人."
 			});
 			add(new Command(Permissions.spawnmob, SpawnMob, "spawnmob", "sm")
 			{
 				AllowServer = false,
-				HelpText = "Spawns a number of mobs around you."
+				HelpText = "在你周围生成大量生物."
 			});
 			add(new Command(Permissions.spawnrate, SpawnRate, "spawnrate")
 			{
-				HelpText = "Sets the spawn rate of NPCs."
+				HelpText = "设置NPC的生成速度."
 			});
 			add(new Command(Permissions.clearangler, ClearAnglerQuests, "clearangler")
 			{
-				HelpText = "Resets the list of users who have completed an angler quest that day."
+				HelpText = "重置当天完成钓鱼任务的用户列表."
 			});
 			#endregion
 			#region TP Commands
@@ -433,17 +433,17 @@ namespace TShockAPI
 			add(new Command(Permissions.tp, TP, "tp")
 			{
 				AllowServer = false,
-				HelpText = "Teleports a player to another player."
+				HelpText = "将玩家传送到另一个玩家身边."
 			});
 			add(new Command(Permissions.tpothers, TPHere, "tphere")
 			{
 				AllowServer = false,
-				HelpText = "Teleports a player to yourself."
+				HelpText = "传送玩家到自己身边."
 			});
 			add(new Command(Permissions.tpnpc, TPNpc, "tpnpc")
 			{
 				AllowServer = false,
-				HelpText = "Teleports you to an npc."
+				HelpText = "传送到一个NPC位置."
 			});
 			add(new Command(Permissions.tppos, TPPos, "tppos")
 			{
@@ -453,39 +453,39 @@ namespace TShockAPI
 			add(new Command(Permissions.getpos, GetPos, "pos")
 			{
 				AllowServer = false,
-				HelpText = "Returns the user's or specified user's current position."
+				HelpText = "返回用户或指定用户的当前位置."
 			});
 			add(new Command(Permissions.tpallow, TPAllow, "tpallow")
 			{
 				AllowServer = false,
-				HelpText = "Toggles whether other people can teleport you."
+				HelpText = "切换其他人是否可以传送你 ."
 			});
 			#endregion
 			#region World Commands
 			add(new Command(Permissions.toggleexpert, ChangeWorldMode, "worldmode", "gamemode")
 			{
-				HelpText = "Changes the world mode."
+				HelpText = "改变世界模式 ."
 			});
 			add(new Command(Permissions.antibuild, ToggleAntiBuild, "antibuild")
 			{
-				HelpText = "Toggles build protection."
+				HelpText = "切换建立保护."
 			});
 			add(new Command(Permissions.grow, Grow, "grow")
 			{
 				AllowServer = false,
-				HelpText = "Grows plants at your location."
+				HelpText = "在您的位置种植植物."
 			});
 			add(new Command(Permissions.halloween, ForceHalloween, "forcehalloween")
 			{
-				HelpText = "Toggles halloween mode (goodie bags, pumpkins, etc)."
+				HelpText = "切换万圣节模式（糖果袋，南瓜等）."
 			});
 			add(new Command(Permissions.xmas, ForceXmas, "forcexmas")
 			{
-				HelpText = "Toggles christmas mode (present spawning, santa, etc)."
+				HelpText = "切换圣诞节模式（当前生成，圣诞老人等）."
 			});
 			add(new Command(Permissions.manageevents, ManageWorldEvent, "worldevent")
 			{
-				HelpText = "Enables starting and stopping various world events."
+				HelpText = "启用和停止各种世界事件."
 			});
 			add(new Command(Permissions.hardmode, Hardmode, "hardmode")
 			{
